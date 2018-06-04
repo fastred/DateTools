@@ -97,7 +97,9 @@ open class TimePeriodGroup: Sequence {
     }
     
     public func split(maxSplits: Int, omittingEmptySubsequences: Bool, whereSeparator isSeparator: (TimePeriodProtocol) throws -> Bool) rethrows -> [AnySequence<TimePeriodProtocol>] {
-        return try periods.split(maxSplits: maxSplits, omittingEmptySubsequences: omittingEmptySubsequences, whereSeparator: isSeparator)
+        return try periods
+            .split(maxSplits: maxSplits, omittingEmptySubsequences: omittingEmptySubsequences, whereSeparator: isSeparator)
+            .map(AnySequence.init)
     }
     
     subscript(index: Int) -> TimePeriodProtocol {
